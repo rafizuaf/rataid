@@ -1,0 +1,20 @@
+query Products($name: String, $category: String, $active: Boolean, $slug: String, $first: Int, $after: String) {
+  products(name: $name, category: $category, active: $active, slug: $slug, first: $first, after: $after) {
+    edges { cursor node { id sku slug name priceCents currency active categories } }
+    pageInfo { endCursor hasNextPage }
+  }
+}
+
+mutation CreateProduct($input: CreateProductInput!) {
+  createProduct(input: $input) { id sku slug name priceCents currency active categories }
+}
+
+mutation UpdateProduct($id: ID!, $input: UpdateProductInput!) {
+  updateProduct(id: $id, input: $input) { id sku slug name priceCents currency active categories }
+}
+
+mutation DeleteProduct($id: ID!) {
+  deleteProduct(id: $id)
+}
+
+
