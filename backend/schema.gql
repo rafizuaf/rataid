@@ -1,0 +1,69 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateProductInput {
+  active: Boolean!
+  categories: [String!]
+  currency: String!
+  description: String
+  name: String!
+  priceCents: Float!
+  sku: String!
+  slug: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product!
+  deleteProduct(id: ID!): Boolean!
+  updateProduct(id: ID!, input: UpdateProductInput!): Product!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+}
+
+type Product {
+  active: Boolean!
+  categories: [String!]!
+  currency: String!
+  deletedAt: DateTime
+  description: String
+  id: ID!
+  name: String!
+  priceCents: Float!
+  sku: String!
+  slug: String!
+}
+
+type ProductConnection {
+  edges: [ProductEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProductEdge {
+  cursor: String!
+  node: Product!
+}
+
+type Query {
+  product(id: ID!): Product
+  products(active: Boolean, after: String, category: String, first: Int, name: String, slug: String): ProductConnection!
+}
+
+input UpdateProductInput {
+  active: Boolean
+  categories: [String!]
+  currency: String
+  description: String
+  name: String
+  priceCents: Float
+  sku: String
+  slug: String
+}
